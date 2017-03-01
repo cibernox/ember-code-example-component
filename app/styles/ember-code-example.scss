@@ -15,8 +15,6 @@
     cursor: pointer;
   }
   &.active {
-    border-bottom: 2px solid $brand-color;
-    color: $brand-color;
     cursor: normal;
   }
 }
@@ -26,5 +24,12 @@
   padding: 1rem;
   &:not(.active) {
     display: none;
+  }
+}
+
+@mixin ember-code-example($color) {
+  .code-example-tab.active {
+    border-bottom: 2px solid $color;
+    color: $color;
   }
 }
