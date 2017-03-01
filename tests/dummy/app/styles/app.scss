@@ -1,2 +1,3 @@
-$brand-color: red;
 @import 'ember-code-example';
+
+@include ember-code-example(red);
