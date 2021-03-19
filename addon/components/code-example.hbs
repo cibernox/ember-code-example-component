@@ -1,0 +1,37 @@
+{{this.activeTab}}
+<article class="code-example" ...attributes>
+  <nav class="code-example-tabs">
+    {{#if @hbs}}
+      <div class="code-example-tab {{if (eq this.activeTab "hbs") 'active'}}" {{on "click" (fn (mut this.activeTab) "hbs")}}>Template</div>
+    {{/if}}
+    {{#if @hbs2}}
+      <div class="code-sample-tab {{if (eq this.activeTab "hbs2") 'active'}}" {{on "click" (fn (mut this.activeTab) "hbs2")}}>Template 2</div>
+    {{/if}}
+    {{#if @js}}
+      <div class="code-example-tab {{if (eq this.activeTab "js") 'active'}}" {{on "click" (fn (mut this.activeTab) "js")}}>Javascript</div>
+    {{/if}}
+    {{#if @css}}
+      <div class="code-example-tab {{if (eq this.activeTab "css") 'active'}}" {{on "click" (fn (mut this.activeTab) "css")}}>CSS</div>
+    {{/if}}
+    {{#if this.showResult}}
+      <div class="code-example-tab {{if (eq this.activeTab "result") 'active'}}" {{on "click" (fn (mut this.activeTab) "result")}}>Result</div>
+    {{/if}}
+  </nav>
+  {{#if (and @hbs (eq this.activeTab 'hbs'))}}
+    {{code-snippet  name=@hbs classNames="code-example-snippet" class="active"}}
+  {{/if}}
+  {{#if @hbs2}}
+    {{code-snippet  name=@hbs2 classNames="code-sample-snippet" class=(if (eq this.activeTab 'hbs2') 'active')}}
+  {{/if}}
+  {{#if (and @js (eq this.activeTab 'js'))}}
+    {{code-snippet  name=@js classNames="code-example-snippet" class="active"}}
+  {{/if}}
+  {{#if (and @css (eq this.activeTab 'css'))}}
+    {{code-snippet  name=@css classNames="code-example-snippet" class="active"}}
+  {{/if}}
+  {{#if (and this.showResult hasBlock)}}
+    <div class="code-example-snippet result {{if (eq this.activeTab 'result') 'active'}}">
+      {{yield this.partialName}}
+    </div>
+  {{/if}}
+</article>

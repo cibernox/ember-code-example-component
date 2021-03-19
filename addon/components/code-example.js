@@ -1,21 +1,19 @@
-import Ember from 'ember';
-import layout from '../templates/components/code-example';
-const { computed } = Ember;
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
 
-export default Ember.Component.extend({
-  layout,
-  tagName: 'article',
-  classNames: ['code-example'],
-  showResult: true,
+export default class CodeExampleComponent extends Component {
+  showResult = true
+  @tracked _activeTab = undefined
 
-  activeTab: computed('showResult', function() {
-    if (this.get('showResult')) {
-      return 'result';
-    }
-    return 'js';
-  }),
+  get activeTab() {
+    return this._activeTab || (this.showResult ? 'result' : 'js');
+  }
 
-  partialName: computed('hbs', function() {
-    return `snippets/${this.get('hbs').replace('.hbs', '')}`;
-  })
-});
+  set activeTab(value) {
+    this._activeTab = value;
+  }
+
+  get partialName() {
+    return `snippets/${this.args.hbs.replace('.hbs', '')}`;
+  }
+}
