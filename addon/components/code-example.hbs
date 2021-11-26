@@ -28,7 +28,7 @@
   {{#if (and @css (eq this.activeTab 'css'))}}
     {{code-snippet  name=@css classNames="code-example-snippet" class="active"}}
   {{/if}}
-  {{#if (and this.showResult hasBlock)}}
+  {{#if (and this.showResult (has-block))}}
     <div class="code-example-snippet result {{if (eq this.activeTab 'result') 'active'}}">
       {{yield this.partialName}}
     </div>
